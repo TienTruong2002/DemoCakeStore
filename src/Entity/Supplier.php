@@ -25,6 +25,12 @@ class Supplier
     #[ORM\OneToMany(mappedBy: 'supplier', targetEntity: Product::class)]
     private Collection $products;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $count = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateofsupply = null;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -85,6 +91,18 @@ class Supplier
                 $product->setSupplier(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateofsupply(): ?\DateTimeInterface
+    {
+        return $this->dateofsupply;
+    }
+
+    public function setDateofsupply(?\DateTimeInterface $dateofsupply): static
+    {
+        $this->dateofsupply = $dateofsupply;
 
         return $this;
     }
