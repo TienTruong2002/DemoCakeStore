@@ -25,6 +25,10 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Supplier $supplier = null;
 
+    #[ORM\ManyToOne(inversedBy: 'product')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?CartDetail $cartDetail = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +78,18 @@ class Product
     public function setSupplier(?Supplier $supplier): static
     {
         $this->supplier = $supplier;
+
+        return $this;
+    }
+
+    public function getCartDetail(): ?CartDetail
+    {
+        return $this->cartDetail;
+    }
+
+    public function setCartDetail(?CartDetail $cartDetail): static
+    {
+        $this->cartDetail = $cartDetail;
 
         return $this;
     }
