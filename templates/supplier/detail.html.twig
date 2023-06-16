@@ -1,14 +1,1 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Hello Supplier!{% endblock %}
-
-{% block body %}
-    <a href="#" class="btn btn-default">Back to Supplier List</a>
-    <hr/>
-    <h2 class="page-header">{{ supplier.id }}</h2>
-    <ul class="list-group mb-2">
-        <li class="list-group-item">Category: {{ supplier.id }}</li>
-        <li class="list-group-item">Category: {{ supplier.Count }}</li>
-        <li class="list-group-item">Due: <strong>{{ supplier.date|date('F j,Y, g:i a') }}</strong></li>
-    </ul>
-{% endblock %}
