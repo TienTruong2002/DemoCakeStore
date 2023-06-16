@@ -49,4 +49,25 @@ class CustomerController extends AbstractController
             'form' => $form
         ]);
     }
+    #[Route('/customer/create', name: 'app_customer_create', priority: 1)]
+    public function createAction(CustomerRepository $customerRepository, Request $request): Response
+    {
+
+        $form = $this->createForm(CustomerType::class, new  Customer());
+
+//        dd($request);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $customer = $form->getData();
+            $customerRepository->save($customer, true);
+            $this->addFlash('success', 'Customer\'s inserted successfully');
+            return $this->redirectToRoute('app_customer_create');
+        }
+
+        return $this->render('customer/create.html.twig', [
+            'form' => $form
+        ]);
+    }
+
 }
