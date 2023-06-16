@@ -69,7 +69,13 @@ class CustomerController extends AbstractController
             'form' => $form
         ]);
     }
-
+    #[Route('/customer/{id}', name: 'app_customer_details')]
+    public function detailsAction(Customer $customer): Response
+    {
+        return $this->render('customer/details.html.twig', [
+            'customer' => $customer
+        ]);
+    }
     #[Route('/customer/delete/{id}', name: 'app_customer_delete')]
     public function deleteAction(Customer $customer, CustomerRepository $customerRepository): Response
     {
